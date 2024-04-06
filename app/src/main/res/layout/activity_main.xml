@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#FFEDEDED">
+
+	<android.support.design.widget.AppBarLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+		android:layout_alignParentTop="true"
+		android:id="@+id/AppBarLayout">
+
+		<android.support.v7.widget.Toolbar
+			android:id="@+id/toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"
+			app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+	</android.support.design.widget.AppBarLayout>
+
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/AppBarLayout"
+		android:padding="10dp"
+		android:gravity="center"
+		android:id="@+id/GetLayout"
+		android:layout_marginBottom="10dp"
+		android:layout_marginTop="10dp">
+
+		<EditText
+			android:layout_width="210dp"
+			android:layout_height="50dp"
+			android:inputType="textNoSuggestions|textUri"
+			android:singleLine="true"
+			android:id="@+id/url"
+			android:elevation="5dp"
+			android:background="@drawable/border_bg"
+			android:hint="Enter Url"
+			android:padding="10dp"/>
+
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="50dp"
+			android:text="Get"
+			android:layout_marginLeft="5dp"
+			android:id="@+id/get"
+			android:elevation="5dp"
+			android:padding="10dp"
+			android:textColor="#FFFFFFFF"
+			android:background="@drawable/button_bg"/>
+
+	</LinearLayout>
+
+	<RelativeLayout
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="250dp"
+		android:padding="10dp"
+		android:id="@+id/ResultLayout"
+		android:layout_below="@+id/GetLayout"
+		android:elevation="5dp">
+
+		<ScrollView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="@drawable/border_bg"
+			android:padding="10dp">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/response"
+				android:textIsSelectable="true"/>
+
+		</ScrollView>
+
+		<ProgressBar
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			android:id="@+id/progressBar"
+			android:visibility="gone"/>
+
+	</RelativeLayout>
+
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="10dp"
+		android:gravity="center"
+        android:id="@+id/bottomLayout"
+        android:visibility="gone"
+		android:layout_below="@+id/ResultLayout"
+		android:layout_marginBottom="10dp"
+		android:layout_marginTop="10dp">
+
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="50dp"
+			android:text="Copy"
+			android:id="@+id/copy"
+			android:elevation="5dp"
+			android:padding="10dp"
+			android:textColor="#FFFFFFFF"
+			android:background="@drawable/button_bg"/>
+
+		<Button
+			android:layout_width="100dp"
+			android:layout_height="50dp"
+			android:text="Download"
+			android:layout_marginLeft="10dp"
+			android:id="@+id/dl"
+			android:elevation="5dp"
+			android:padding="10dp"
+			android:textColor="#FFFFFFFF"
+			android:layout_marginRight="10dp"
+			android:background="@drawable/button_bg"/>
+
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="50dp"
+			android:text="Clear"
+			android:id="@+id/clear"
+			android:elevation="5dp"
+			android:padding="10dp"
+			android:textColor="#FFFFFFFF"
+			android:background="@drawable/button_bg"/>
+
+	</LinearLayout>
+
+</RelativeLayout>
+
