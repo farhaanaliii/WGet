@@ -1,26 +1,32 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+}
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.1.1"
+    namespace = 'com.github.farhanaliofficial.wget'
+    compileSdk = 35
 
     defaultConfig {
-        applicationId "com.github.farhanaliofficial.wget"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        applicationId = "com.github.farhanaliofficial.wget"
+        minSdk = 23
+        targetSdk = 35
+        versionCode = 1
+        versionName = "1.0"
     }
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled = false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:27.1.1'
-	compile 'com.android.support:design:27.1.1'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.8.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
