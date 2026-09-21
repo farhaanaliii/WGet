@@ -1,1 +1,34 @@
-/build
+*.apk
+*.aar
+*.ap_
+*.aab
+*.dex
+*.class
+
+# Build and Gradle
+.gradle/
+build/
+/*/build/
+out/
+bin/
+gen/
+
+# Local configuration
+local.properties
+
+# Android Studio / IntelliJ
+*.iml
+.idea/
+.navigation/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Keystores & sensitive files
+*.jks
+*.keystore
+google-services.json
+
+# OS files
+.DS_Store
+Thumbs.db
