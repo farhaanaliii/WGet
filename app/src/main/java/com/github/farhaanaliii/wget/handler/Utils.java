@@ -1,4 +1,4 @@
-package com.github.farhanaliofficial.wget.handler;
+package com.github.farhaanaliii.wget.handler;
 
 import java.io.File;
 import android.os.Environment;
@@ -32,7 +32,4 @@ public class Utils {
         }
         return filePath;
     }
-    
-    
-    
 }

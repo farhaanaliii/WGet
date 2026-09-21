@@ -1,4 +1,4 @@
-package com.github.farhanaliofficial.wget.activity;
+package com.github.farhaanaliii.wget.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.view.Gravity;
 import android.widget.ImageView;
-import com.github.farhanaliofficial.wget.R;
+import com.github.farhaanaliii.wget.R;
 import android.os.Handler;
 import android.content.Intent;
 import android.graphics.Color;

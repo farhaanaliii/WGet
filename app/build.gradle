@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = 'com.github.farhanaliofficial.wget'
+    namespace = 'com.github.farhaanaliii.wget'
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.github.farhanaliofficial.wget"
+        applicationId = "com.github.farhaanaliii.wget"
         minSdk = 23
         targetSdk = 35
         versionCode = 1
