@@ -1,7 +1,8 @@
 package com.github.farhanaliofficial.wget.activity;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.WindowManager;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -32,12 +33,12 @@ public class SplashActivity extends AppCompatActivity {
         
         setContentView(layout);
         
-        new Handler().postDelayed(new Runnable(){
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable(){
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this,MainActivity.class));
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 finish();
             }
-        },2000);
+        }, 2000);
     }
 }

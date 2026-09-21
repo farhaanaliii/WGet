@@ -1,8 +1,8 @@
 package com.github.farhanaliofficial.wget.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.widget.ProgressBar;
 import android.widget.EditText;
 import android.widget.Button;
@@ -24,14 +24,14 @@ import java.io.File;
 import android.net.Uri;
 import com.github.farhanaliofficial.wget.handler.Utils;
 import android.Manifest;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
+import androidx.core.app.ActivityCompat;
 import android.widget.LinearLayout;
 import android.database.Cursor;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.content.DialogInterface;
 
 public class MainActivity extends AppCompatActivity {
@@ -53,30 +53,29 @@ public class MainActivity extends AppCompatActivity {
         inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         
-        
-        
         get.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 bottomLayout.setVisibility(View.GONE);
                 response.setText("");
                 url.clearFocus();
-                new WGet(url.getText().toString()).execute();;
+                new WGet(url.getText().toString()).execute();
                 progressBar.setVisibility(View.VISIBLE);
             }
         });
         copy.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Copy(response.getText().toString(),MainActivity.this);
-                Toast.makeText(MainActivity.this,"Copied!",0).show();
+                Copy(response.getText().toString(), MainActivity.this);
+                Toast.makeText(MainActivity.this, "Copied!", Toast.LENGTH_SHORT).show();
             }
         });
         dl.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                
-                if(url.getText().toString() == "" && response.getText().toString() == ""){
+                String inputUrl = url.getText().toString().trim();
+                String resText = response.getText().toString().trim();
+                if(inputUrl.isEmpty() && resText.isEmpty()){
                     return;
                 }
                 dl.setEnabled(false);
@@ -84,24 +83,24 @@ public class MainActivity extends AppCompatActivity {
                 query.setFilterById(downloadId);
                 Cursor cursor = downloadManager.query(query);
 
-                if(cursor.moveToFirst()){
-                    int status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
+                if(cursor != null && cursor.moveToFirst()){
+                    int status = cursor.getInt(cursor.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS));
                     if(status == DownloadManager.STATUS_SUCCESSFUL){
                         dl.setEnabled(true);
                     }else{
-                        Toast.makeText(MainActivity.this,"Already Downloading",Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Already Downloading", Toast.LENGTH_LONG).show();
                     }
+                    cursor.close();
                 }
                 requestStoragePermissions();
-                //String url = "http://speedtest.ftp.otenet.gr/files/test10Mb.db";
                 String fileName = "";
-                if(url.getText().toString().endsWith("/")){
-                    fileName = url.getText().toString();
+                if(inputUrl.endsWith("/")){
+                    fileName = inputUrl;
                 }else{
-                    fileName = url.getText().toString().substring(url.getText().toString().lastIndexOf('/') + 1);
+                    fileName = inputUrl.substring(inputUrl.lastIndexOf('/') + 1);
                 }
                 File file = Utils.createDocumentFile(fileName, MainActivity.this);
-                DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url.getText().toString()))
+                DownloadManager.Request request = new DownloadManager.Request(Uri.parse(inputUrl))
                     .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
                     .setDestinationUri(Uri.fromFile(file))
                     .setTitle(fileName)
@@ -110,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     .setAllowedOverMetered(true)
                     .setAllowedOverRoaming(true);
                 downloadId = downloadManager.enqueue(request);
-                Toast.makeText(MainActivity.this,"Downloading Started!",0).show();
+                Toast.makeText(MainActivity.this, "Downloading Started!", Toast.LENGTH_SHORT).show();
             }
         });
         clear.setOnClickListener(new View.OnClickListener(){
@@ -119,13 +118,13 @@ public class MainActivity extends AppCompatActivity {
                 bottomLayout.setVisibility(View.GONE);
                 url.setText("");
                 response.setText("");
-                Toast.makeText(MainActivity.this,"Cleared!",0).show();
+                Toast.makeText(MainActivity.this, "Cleared!", Toast.LENGTH_SHORT).show();
             }
         });
     }
     private void init(){
         Toolbar toolbar = findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
         url = findViewById(R.id.url);
         get = findViewById(R.id.get);
         copy = findViewById(R.id.copy);
@@ -139,8 +138,8 @@ public class MainActivity extends AppCompatActivity {
         background.setCornerRadius(15);
         background.setStroke(3, Color.parseColor("#ffffff"));
     }
-    public static void Copy(String text,Context context) {
-        ClipboardManager clipboard = (ClipboardManager) context.getSystemService(context.CLIPBOARD_SERVICE); 
+    public static void Copy(String text, Context context) {
+        ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE); 
         ClipData clip = ClipData.newPlainText("text", text);
         clipboard.setPrimaryClip(clip);
     }
@@ -167,29 +166,26 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu){
-		getMenuInflater().inflate(R.menu.main_menu, menu);
-		return true;
-	}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item){
-		if(item.getItemId() == R.id.about){
-			AlertDialog dialog = new AlertDialog.Builder(this)
-				.setTitle("About")
-				.setMessage("WGet 1.0 - Developed by Farhan Ali\nifarhanali.dev@gmail.com")
-				.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        if(item.getItemId() == R.id.about){
+            AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("About")
+                .setMessage("WGet 1.0 - Developed by Farhan Ali\ni.farhanali.dev@gmail.com")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dia, int which) {
-
                     }
-				})
-				
-				.create();
-			dialog.show();
-		}
-		return true;
-	}
+                })
+                .create();
+            dialog.show();
+        }
+        return true;
+    }
 }
