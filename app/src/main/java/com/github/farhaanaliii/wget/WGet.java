@@ -1,4 +1,4 @@
-package com.github.farhaanaliii.wget.handler;
+package com.github.farhaanaliii.wget;
 
 import android.os.AsyncTask;
 import java.net.URL;
@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.nio.charset.Charset;
 import android.view.View;
-import com.github.farhaanaliii.wget.activity.MainActivity;
 import java.util.Map;
 import java.util.HashMap;
 

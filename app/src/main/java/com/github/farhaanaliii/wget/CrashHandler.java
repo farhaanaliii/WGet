@@ -1,4 +1,4 @@
-package com.github.farhaanaliii.wget.handler;
+package com.github.farhaanaliii.wget;
 
 import android.app.Activity;
 import android.app.Application;

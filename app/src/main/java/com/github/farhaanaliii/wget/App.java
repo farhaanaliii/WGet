@@ -1,6 +1,5 @@
-package com.github.farhaanaliii.wget.app;
+package com.github.farhaanaliii.wget;
 
-import com.github.farhaanaliii.wget.handler.CrashHandler;
 import android.app.Application;
 
 public class App extends Application {

@@ -1,4 +1,4 @@
-package com.github.farhaanaliii.wget.handler;
+package com.github.farhaanaliii.wget;
 
 import java.io.File;
 import android.os.Environment;

@@ -1,4 +1,4 @@
-package com.github.farhaanaliii.wget.activity;
+package com.github.farhaanaliii.wget;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;

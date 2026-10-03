@@ -1,4 +1,4 @@
-package com.github.farhaanaliii.wget.activity;
+package com.github.farhaanaliii.wget;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +13,6 @@ import android.graphics.Color;
 import android.view.inputmethod.InputMethodManager;
 import android.view.WindowManager;
 import android.content.Context;
-import com.github.farhaanaliii.wget.handler.WGet;
 import com.github.farhaanaliii.wget.R;
 import android.content.Intent;
 import android.content.ClipData;
@@ -22,7 +21,6 @@ import android.widget.Toast;
 import android.app.DownloadManager;
 import java.io.File;
 import android.net.Uri;
-import com.github.farhaanaliii.wget.handler.Utils;
 import android.Manifest;
 import androidx.core.content.ContextCompat;
 import android.content.pm.PackageManager;
